@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>JSDoc:
+    Source: recipe-basics.js
+  </title>
+
+  <script src="scripts/prettify/prettify.js"> </script>
+  <script src="scripts/prettify/lang-css.js"> </script>
+  <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <link rel="stylesheet" href="custom.css">
+</head>
+
+<body>
+
+  <div id="main">
+
+    <h1 class="page-title">
+      Source: recipe-basics.js
+    </h1>
+
+
+
+
+
+
+    <section>
+      <article>
+        <pre class="prettyprint source linenums"><code>// recipe-basics.js
+// Core recipe creation and modification functions
+
+/* c8 ignore start */
+// Set to true to see console examples when running this file directly
+const SHOW_EXAMPLES = false;
+/* c8 ignore stop */
+
+/**
+ * Creates a new recipe object (demonstrates function declaration)
+ *
+ * @param {string} name - Name of the recipe
+ * @param {number} cookingTime - Time to cook in minutes
+ * @param {number} servings - Number of people served (with default value)
+ * @returns {object} - A new recipe object
+ *
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function |MDN: Function declarations}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters |MDN: Default parameters}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now |MDN: Date.now() method}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer |MDN: Object literal syntax}
+ */
+function createRecipe(name, cookingTime, servings = 4) {
+  // Local variables - only accessible inside this function
+  const id = Date.now();
+  const dateCreated = new Date().toLocaleDateString();
+
+  // Return a new recipe object
+  return {
+    id,
+    name,
+    cookingTime,
+    servings,
+    ingredients: [],
+    steps: [],
+    dateCreated
+  };
+}
+
+/**
+ * Adds an ingredient to a recipe (demonstrates function expression)
+ * A function expression assigns a function to a variable
+ *
+ * @param {object} recipe - The recipe to modify
+ * @param {string} name - Ingredient name
+ * @param {number} amount - Quantity of ingredient
+ * @param {string} unit - Unit of measurement
+ * @returns {object} - The updated recipe
+ *
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function |MDN: Function expressions}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push |MDN: Array.push() method}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Property_definitions |MDN: Object property shorthand}
+ */
+const addIngredient = function (recipe, name, amount, unit) {
+  recipe.ingredients.push({
+    name,
+    amount,
+    unit
+  });
+
+  return recipe;
+};
+
+/**
+ * Adds a step to the recipe (demonstrates function declaration)
+ *
+ * @param {object} recipe - The recipe to modify
+ * @param {string} instruction - The cooking instruction to add
+ * @returns {object} - The updated recipe
+ *
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function |MDN: Function declarations}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push |MDN: Array.push() method}
+ */
+function addStep(recipe, instruction) {
+  recipe.steps.push(instruction);
+  return recipe;
+}
+
+/**
+ * Removes a step from a recipe (demonstrates function parameter usage)
+ *
+ * @param {object} recipe - The recipe to modify
+ * @param {number} stepIndex - The index of the step to remove
+ * @returns {object} - The updated recipe
+ *
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice |MDN: Array.splice() method}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#Conditional_statements |MDN: Conditional statements}
+ */
+function removeStep(recipe, stepIndex) {
+  if (stepIndex >= 0 &amp;&amp; stepIndex &lt; recipe.steps.length) {
+    recipe.steps.splice(stepIndex, 1);
+  }
+  return recipe;
+}
+
+/* c8 ignore start */
+// Example code - only runs when SHOW_EXAMPLES is true
+if (SHOW_EXAMPLES) {
+  console.log("=== Recipe Basics Examples ===");
+
+  // Create a recipe
+  const pancakes = createRecipe('Pancakes', 20, 6);
+  console.log("Created recipe:", pancakes);
+
+  // Add ingredients
+  addIngredient(pancakes, 'Flour', 2, 'cups');
+  addIngredient(pancakes, 'Milk', 1.5, 'cups');
+  addIngredient(pancakes, 'Eggs', 2, 'large');
+  console.log("Recipe with ingredients:", pancakes.ingredients);
+
+  // Add steps
+  addStep(pancakes, 'Mix dry ingredients in a bowl');
+  addStep(pancakes, 'Add wet ingredients and stir until smooth');
+  addStep(pancakes, 'Heat griddle and pour batter to form pancakes');
+  addStep(pancakes, 'Flip when bubbles form on surface');
+  addStep(pancakes, 'Cook until golden brown');
+  console.log("Recipe with steps:", pancakes.steps);
+
+  // Remove a step
+  removeStep(pancakes, 2);
+  console.log("Recipe after removing step 3:", pancakes.steps);
+}
+/* c8 ignore stop */
+
+// Export functions to be used in other files
+export {
+  createRecipe,
+  addIngredient,
+  addStep,
+  removeStep
+};
+</code></pre>
+      </article>
+    </section>
+
+
+
+
+  </div>
+
+  <nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Global</h3>
+    <ul>
+      <li><a href="global.html#addIngredient">addIngredient</a></li>
+      <li><a href="global.html#addRecipe">addRecipe</a></li>
+      <li><a href="global.html#addStep">addStep</a></li>
+      <li><a href="global.html#clearRecipes">clearRecipes</a></li>
+      <li><a href="global.html#createRecipe">createRecipe</a></li>
+      <li><a href="global.html#findRecipe">findRecipe</a></li>
+      <li><a href="global.html#formatRecipe">formatRecipe</a></li>
+      <li><a href="global.html#getIngredientsList">getIngredientsList</a></li>
+      <li><a href="global.html#getQuickRecipes">getQuickRecipes</a></li>
+      <li><a href="global.html#getStepsList">getStepsList</a></li>
+      <li><a href="global.html#removeStep">removeStep</a></li>
+      <li><a href="global.html#timePerServing">timePerServing</a></li>
+    </ul>
+  </nav>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc
+      4.0.4
+    </a>
+
+    on
+    Sun Mar 02 2025 12:48:31 GMT-0500 (Eastern Standard Time)
+
+  </footer>
+
+  <script> prettyPrint(); </script>
+  <script src="scripts/linenumber.js"> </script>
+</body>
+
+</html>

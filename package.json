@@ -1,0 +1,32 @@
+{
+  "name": "functions-recipe-test",
+  "version": "1.0.0",
+  "description": "JS unit testing",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test:1": "vitest tests/recipe-basics.test.js --globals --run",
+    "test:2": "vitest tests/recipe-collection.test.js --globals --run",
+    "test:3": "vitest tests/recipe-display.test.js --globals --run",
+    "test": "vitest run --silent --globals --coverage --coverage.exclude=docs --coverage.exclude=eslint.config.mjs ",
+    "lint": "eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RVCC-IDMX/javascript-functions-recipe-template"
+  },
+  "author": "Cynthia Teeters <cynthia.teeters@raritanval.edu> (https://github.com/cynthiateeters)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RVCC-IDMX/javascript-functions-recipe-template/issues"
+  },
+  "homepage": "https://github.com/RVCC-IDMX/javascript-functions-recipe-template#readme",
+  "devDependencies": {
+    "@cynthiateeters/check-see-links": "^1.1.0",
+    "@eslint/js": "^9.19.0",
+    "@vitest/coverage-v8": "^3.0.6",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "vitest": "^3.0.5"
+  }
+}
