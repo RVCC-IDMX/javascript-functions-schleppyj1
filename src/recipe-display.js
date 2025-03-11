@@ -24,7 +24,9 @@ const timePerServing = recipe => {
   // Create a concise arrow function (with implicit return)
   // that divides the recipe's cookingTime by its servings
 
-  // YOUR CODE HERE
+  let calcTime = (recipe) => recipe.cookingTime / recipe.servings;
+
+  return calcTime(recipe);
 };
 
 /**
@@ -44,7 +46,19 @@ const getStepsList = (recipe) => {
   // Add a newline character (\n) after each step
   // Return the formatted string
 
-  // YOUR CODE HERE
+  if (recipe.steps != null && typeof recipe.steps != 'undefined' && recipe.steps.length > 0) {
+    let formattedSteps = "";
+
+    for (let i = 0; i <= recipe.steps.length - 1; i++) {
+      formattedSteps += i + 1 + ". " + recipe.steps[i] + "\n";
+    }
+
+    return formattedSteps;
+  }
+
+  else {
+    return "No steps added yet";
+  }
 };
 
 /**
@@ -65,7 +79,20 @@ const getIngredientsList = (recipe) => {
   // Add a newline character (\n) after each ingredient
   // Return the formatted string
 
-  // YOUR CODE HERE
+  if (recipe.ingredients != null && typeof recipe.ingredients != 'undefined' && recipe.ingredients.length > 0) {
+    let formattedIngredients = "";
+
+    for (let i = 0; i <= recipe.ingredients.length - 1; i++) {
+      formattedIngredients += "- " + recipe.ingredients[i].amount + " " + recipe.ingredients[i].unit
+        + " of " + recipe.ingredients[i].name + "\n";
+    }
+
+    return formattedIngredients;
+  }
+
+  else {
+    return "No ingredients added yet";
+  }
 };
 
 /**
@@ -86,7 +113,15 @@ function formatRecipe(recipe) {
   // Use template literals (backticks) for multi-line formatting
   // Return the complete formatted string
 
-  // YOUR CODE HERE
+  let formattedRecipe = `${recipe.name} for ${recipe.servings} people Cooking time: ${recipe.cookingTime} minutes
+
+    Time per serving: ${timePerServing(recipe).toFixed(1)} minutes
+
+    Ingredients: ${getIngredientsList(recipe)}
+
+    Steps: ${getStepsList(recipe)}`;
+
+  return formattedRecipe;
 }
 
 /* c8 ignore start */

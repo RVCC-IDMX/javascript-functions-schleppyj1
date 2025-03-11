@@ -30,7 +30,19 @@ function createRecipe(name, cookingTime, servings = 4) {
   // - steps: an empty array to store cooking steps
   // - dateCreated: today's date (use new Date().toLocaleDateString())
 
-  // YOUR CODE HERE
+  function recipe(name, cookingTime, servings) {
+    this.id = Date.now();
+    this.name = name;
+    this.cookingTime = cookingTime;
+    this.servings = servings;
+    this.ingredients = [];
+    this.steps = [];
+    this.dateCreated = new Date().toLocaleDateString();
+  }
+
+  let newRecipe = new recipe(name, cookingTime, servings);
+
+  return newRecipe;
 }
 
 /**
@@ -53,7 +65,19 @@ const addIngredient = function (recipe, name, amount, unit) {
   // Add it to the recipe's ingredients array
   // Return the modified recipe
 
-  // YOUR CODE HERE
+  function ingredient(name, amount, unit) {
+    this.name = name;
+    this.amount = amount;
+    this.unit = unit;
+  }
+
+  let newIngredient = new ingredient(name, amount, unit);
+
+  if (recipe.ingredients != null && typeof recipe.ingredients != 'undefined') {
+    recipe.ingredients.push(newIngredient);
+  }
+
+  return recipe;
 };
 
 /**
@@ -71,7 +95,11 @@ function addStep(recipe, instruction) {
   // Add the instruction to the recipe's steps array
   // Return the modified recipe
 
-  // YOUR CODE HERE
+  if (recipe.steps != null && typeof recipe.steps != 'undefined') {
+    recipe.steps.push(instruction);
+  }
+
+  return recipe;
 }
 
 /**
@@ -90,7 +118,11 @@ function removeStep(recipe, stepIndex) {
   // If valid, remove the step at that index using splice()
   // Return the modified recipe
 
-  // YOUR CODE HERE
+  if (stepIndex >= 0 && stepIndex < recipe.steps.length) {
+    recipe.steps.splice(stepIndex, 1);
+  }
+
+  return recipe;
 }
 
 /* c8 ignore start */
